@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-const { Sequelize } = require('sequelize');
+let sequelize = require('./_utils/db.config')
 
 const app = express()
 app.use(cors())
@@ -12,21 +12,8 @@ const ticket_router = require('./routes/ticket')
 
 app.use('/tickets', ticket_router)
 
-
 app.get('/', (req, res) => res.send('Hello World'))
 app.get('*', (req, res) => res.status(404).send(`Are you lost somewhere ?`))
-
-
-
-
-let sequelize = new Sequelize(
-    process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: 'mysql',
-    logging: false
-}
-)
 
 sequelize.authenticate()
     .then( () => console.log('DB Connection OK'))
