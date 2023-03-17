@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-let sequelize = require('./_utils/db.config')
+let DB = require('./_utils/db.config')
 
 const app = express()
 app.use(cors())
@@ -15,7 +15,7 @@ app.use('/tickets', ticket_router)
 app.get('/', (req, res) => res.send('Hello World'))
 app.get('*', (req, res) => res.status(404).send(`Are you lost somewhere ?`))
 
-sequelize.authenticate()
+DB.sequelize.authenticate()
     .then( () => console.log('DB Connection OK'))
     .catch( (err) => console.log('Database Error', err))
 

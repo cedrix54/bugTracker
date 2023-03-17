@@ -8,8 +8,12 @@ let sequelize = new Sequelize(
         logging: false
     }
 )
-
-
 sequelize.sync()
 
-module.exports = sequelize
+const db = {}
+
+db.sequelize = sequelize
+db.Ticket = require ('./../models/tickets')(sequelize)
+
+
+module.exports = db
