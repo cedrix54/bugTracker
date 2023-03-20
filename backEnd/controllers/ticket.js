@@ -10,7 +10,6 @@ exports.getAllTickets = (req, res) => {
             res.status(500).json({message: 'Database Error'})
         })
 }
-
 exports.getTicket = async (req, res) => {
     let ticketId = parseInt(req.params.id)
 
@@ -29,9 +28,6 @@ exports.getTicket = async (req, res) => {
     }
 }
 
-
-
-
 exports.addTicket = async (req, res) => {
     const {project, severity, summary, description, status, assignee} = req.body
     if (!project || !severity || !summary || !description || !status || !assignee){
@@ -44,4 +40,32 @@ exports.addTicket = async (req, res) => {
         console.log(err)
         return res.status(500).json({message: 'Database Error'})
     }
+}
+exports.updateTicket = async (req, res) => {
+    let ticketId = parseInt(req.params.id)
+
+    if (!ticketId) {
+        return res.status(400).json({ message: 'Missing parameter' })
+    }
+
+    try{
+        let ticket = await Ticket.findOne({ where: {id: ticketId}, raw: true})
+        if(ticket === null){
+            return res.status(404).json({ message: 'This ticket does not exist !'})
+        }
+        await Ticket.update(req.body, { where: {id: ticketId}})
+        return res.json({ message: 'Ticket Updated'})
+    }catch(err){
+        return res.status(500).json({ message: 'Database Error', error: err })
+    }
+}
+exports.deleteTicket = (req, res) => {
+    let ticketId = parseInt(req.params.id)
+    if(!ticketId) {
+        return res.status(400).json({message: 'Missing Parameter'})
+    }
+
+    Ticket.destroy({where : {id: ticketId}, force: true})
+        .then(() => res.status(204).json({}))
+        .catch(() => res.status(500).json({message: 'Database Error'}))
 }
