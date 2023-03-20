@@ -9,3 +9,12 @@ exports.getAllStatuses = (req, res) => {
             res.status(500).json({message: 'Database Error'})
         })
 }
+exports.addStatuses = (req, res) => {
+    Status.create({status: 'New'})
+    Status.create({status: 'Open'})
+    Status.create({status: 'Fixed'})
+    Status.create({status: 'Tested'})
+    Status.create({status: 'Closed'})
+
+    return res.json({message: 'Status Table Populated'})
+}
