@@ -9,7 +9,6 @@ let sequelize = new Sequelize(
     }
 )
 
-
 const db = {}
 
 db.sequelize = sequelize
