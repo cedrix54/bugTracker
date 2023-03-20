@@ -17,5 +17,11 @@ db.Severity = require ('./../models/severity')(sequelize)
 db.Status = require ('./../models/status')(sequelize)
 
 
-sequelize.sync()
+db.Severity.hasMany(db.Ticket, {foreignKey: 'id'})
+db.Ticket.belongsTo(db.Severity, {foreignKey: 'severity'})
+
+db.Status.hasMany(db.Ticket, {foreignKey: 'id'})
+db.Ticket.belongsTo(db.Status, {foreignKey: 'status'})
+
+sequelize.sync({alter: true})
 module.exports = db
