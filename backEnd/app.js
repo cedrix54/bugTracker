@@ -8,9 +8,13 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
 
 const ticket_router = require('./routes/ticket')
+const status_router = require('./routes/statuses')
+const severity_router = require('./routes/severities')
 
 
 app.use('/tickets', ticket_router)
+app.use('/statuses', status_router)
+app.use('/severities', severity_router)
 
 app.get('/', (req, res) => res.send('Hello World'))
 app.get('*', (req, res) => res.status(404).send(`Are you lost somewhere ?`))

@@ -8,12 +8,15 @@ let sequelize = new Sequelize(
         logging: false
     }
 )
-sequelize.sync()
+
 
 const db = {}
 
 db.sequelize = sequelize
 db.Ticket = require ('./../models/tickets')(sequelize)
+db.Severity = require ('./../models/severity')(sequelize)
+db.Status = require ('./../models/status')(sequelize)
 
 
+sequelize.sync()
 module.exports = db

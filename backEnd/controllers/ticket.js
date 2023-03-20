@@ -1,7 +1,6 @@
 const DB = require('./../_utils/db.config')
 const Ticket = DB.Ticket
 
-
 exports.getAllTickets = (req, res) => {
     Ticket.findAll()
         .then( tickets => res.json({data: tickets}))
