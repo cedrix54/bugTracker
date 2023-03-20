@@ -5,7 +5,7 @@ let router=express.Router()
 
 
 router.get('/', ticketCtrl.getAllTickets)
-router.get('/:id', (req, res) => res.send(`ticket ${req.params.id}`))
+router.get('/:id', ticketCtrl.getTicket)
 
 router.put('', ticketCtrl.addTicket)
 

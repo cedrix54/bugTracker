@@ -11,6 +11,27 @@ exports.getAllTickets = (req, res) => {
         })
 }
 
+exports.getTicket = async (req, res) => {
+    let ticketId = parseInt(req.params.id)
+
+    if(!ticketId) {
+        return res.status(400).json({message: 'Missing Parameter'})
+    }
+
+    try{
+        let ticket = await Ticket.findOne({ where: {id: ticketId}})
+        if (ticket === null){
+            return res.status(404).json({message: 'Ticket does not exist'})
+        }
+        return res.json({data: ticket})
+    } catch{
+        return res.status(500).json({message: 'Database Error'})
+    }
+}
+
+
+
+
 exports.addTicket = async (req, res) => {
     const {project, severity, summary, description, status, assignee} = req.body
     if (!project || !severity || !summary || !description || !status || !assignee){
