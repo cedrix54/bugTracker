@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Card = (() => {
+const Home = (() => {
     
     return (
-       <div>dkjqslkjdksl</div>
+       <div>Home</div>
     );
     });
 
-export default Card;
+export default Home;
