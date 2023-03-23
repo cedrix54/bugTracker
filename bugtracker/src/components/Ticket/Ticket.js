@@ -1,11 +1,63 @@
-import React from 'react';
+import React, {useEffect, useState, useRef} from 'react';
+import moment from 'moment';
+import { ticketService } from './../../_services/ticket.service'
 
-const TicketRouter = () => {
+const Ticket = () => {
+    const [tickets, setTickets] = useState([])
+    const flag = useRef(false)
+
+    useEffect(() => {
+        if(flag.current === false){
+            ticketService.getAllTickets()
+                .then(res => {
+                    // Liste dans le state
+                    setTickets(res.data.data)
+                })
+                .catch(err => console.log(err))
+        }
+
+        return () => flag.current = true
+    }, [])
+
     return (
         <div>
             Liste des Tickets
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Project</th>
+                        <th>Severity</th>
+                        <th>Summary</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Assignee</th>
+                        <th>CreatedAt</th>
+                        <th>UpdatetdAt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        tickets.map(ticket => (
+                            <tr key={ticket.id}>
+                                <td>#{ticket.id}</td>
+                                <td>{ticket.project}</td>
+                                <td>{ticket.Severity.severity}</td>
+                                <td>{ticket.summary}</td>
+                                <td>{ticket.description}</td>
+                                <td>{ticket.Status.status}</td>
+                                <td>{ticket.assignee}</td>
+                                <td>{moment(ticket.createdAt).format('DD/MM/YYYY')}</td>
+                                <td>{moment(ticket.updatedAt).format('DD/MM/YYYY')}</td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+
+
         </div>
     );
 };
 
-export default TicketRouter;
+export default Ticket;

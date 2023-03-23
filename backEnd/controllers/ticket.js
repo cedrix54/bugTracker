@@ -1,8 +1,9 @@
+
 const DB = require('./../_utils/db.config')
 const Ticket = DB.Ticket
 
 exports.getAllTickets = (req, res) => {
-    Ticket.findAll()
+    Ticket.findAll({include: [{model: DB.Status, attributes:['id', 'status']}, {model: DB.Severity, attributes:['id', 'severity']}]})
         .then( tickets => res.json({data: tickets}))
         .catch(err => {
             console.log(err)
