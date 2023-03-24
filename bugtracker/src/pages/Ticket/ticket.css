@@ -1,0 +1,44 @@
+.ticket{
+    border: solid 1px grey;
+    width: 85%;
+    padding: 50px;
+    margin:auto;
+}
+.ticket p{
+    text-align: left;
+    margin-top: -20px;
+}
+.summary{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: auto;
+    grid-gap: 25px;
+    margin-bottom: 20px;
+}
+.summary span{
+    border-bottom: solid 1px black;
+}
+.summary .issueLabel{
+    text-align: right;
+}
+.summary .issueValue{
+    text-align: left;
+}
+
+.detail label{
+    display: block;
+    text-align: left;
+    margin-bottom: 20px;
+}
+.detail .issueLabel{
+    border-bottom: solid 1px black;
+    margin-bottom: 0;
+}
+
+.action {
+    text-align: right;
+}
+
+.action a{
+    margin: 20px;
+}

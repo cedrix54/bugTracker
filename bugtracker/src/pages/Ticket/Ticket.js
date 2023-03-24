@@ -2,6 +2,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import moment from 'moment';
 import { ticketService } from '../../_services/ticket.service'
+import './ticket.css'
 
 const Ticket = () => {
     const [ticket, setTicket] = useState([])
@@ -23,21 +24,22 @@ const Ticket = () => {
         <div className='ticket'>
             <p>Issue Détails : </p>
             <div className='summary'>
-                <label>Ticket # : </label><input type='text' disabled value={ticket.id} />
-                <label>Project # : </label><input type='text' disabled value={ticket.project} /><br />
-                <label>Severity : </label><input type='text' disabled value={ticket.Severity?.severity || ''} />
-                <label>Status : </label><input type='text' disabled value={ticket.Status?.status || ''} /><br />
-                <label>Assigned to : </label><input type='text' disabled value={ticket.assignee} /><br />
-                <label>Created : </label><input type='text' disabled value={moment(ticket.createdAt).format('DD/MM/YYYY HH:mm')} />
-                <label>Updated : </label><input type='text' disabled value={moment(ticket.updatedAt).format('DD/MM/YYYY HH:mm')} />
+                <span><label className='issueLabel'>Ticket # : </label><label className='issueValue'>{ticket.id}</label></span>
+                <span><label className='issueLabel'>Project : </label><label className='issueValue'>{ticket.project}</label></span>
+                <span><label className='issueLabel'>Severity : </label><label className='issueValue'>{ticket.Severity?.severity || ''}</label></span>
+                <span><label className='issueLabel'>Status : </label><label className='issueValue'>{ticket.Status?.status || ''}</label></span>
+                <span><label className='issueLabel'>Assigned to : </label><label className='issueValue'>{ticket.assignee}</label></span>
+                <span><label className='issueLabel'>Created : </label><label className='issueValue'>{moment(ticket.createdAt).format('DD/MM/YYYY HH:mm')}</label></span>
+                <span><label className='issueLabel'>Updated : </label><label className='issueValue'>{moment(ticket.updatedAt).format('DD/MM/YYYY HH:mm')}</label></span>
+                <span><label className='issueLabel'>Category : </label><label className='issueValue'>Not Implemented</label></span>
             </div>
-            <div className='summary'>
-                <label>Summary : </label><input type='text' disabled value={ticket.summary} /><br />
-                <label>Description : </label><br /><textarea type='text' disabled value={ticket.description} rows="5" cols="50"/>
+            <div className='detail'>
+                <label className='issueLabel summary'>Summary : </label><label className='issueValue'>{ticket.summary}</label>
+                <label className='issueLabel description'>Description : </label><label className='issueValue'>{ticket.description}</label>
             </div>
             <div className='action'>
-                <Link to={`/admin/cocktail/edit/${ticket.id}`}>Update</Link>
-                <Link to={`/admin/cocktail/edit/${ticket.id}`}>Delete</Link>
+                <Link to={`./../edit/${ticket.id}`}>Edit</Link> 
+                <Link to={`./../edit/${ticket.id}`}>Delete</Link>
             </div>
         </div>
     );
