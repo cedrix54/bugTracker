@@ -31,11 +31,10 @@ const Ticket = () => {
                 <span><label className='issueLabel'>Assigned to : </label><label className='issueValue'>{ticket.assignee}</label></span>
                 <span><label className='issueLabel'>Created : </label><label className='issueValue'>{moment(ticket.createdAt).format('DD/MM/YYYY HH:mm')}</label></span>
                 <span><label className='issueLabel'>Updated : </label><label className='issueValue'>{moment(ticket.updatedAt).format('DD/MM/YYYY HH:mm')}</label></span>
-                <span><label className='issueLabel'>Category : </label><label className='issueValue'>Not Implemented</label></span>
-            </div>
+             </div>
             <div className='detail'>
-                <label className='issueLabel summary'>Summary : </label><label className='issueValue'>{ticket.summary}</label>
-                <label className='issueLabel description'>Description : </label><label className='issueValue'>{ticket.description}</label>
+                <label className='issueLabel'>Summary : </label><label className='issueValue'>{ticket.summary}</label>
+                <label className='issueLabel'>Description : </label><label className='issueValue'>{ticket.description}</label>
             </div>
             <div className='action'>
                 <Link to={`./../edit/${ticket.id}`}>Edit</Link> 

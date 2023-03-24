@@ -1,3 +1,6 @@
+*{
+    font-size: 1em;
+}
 .ticket{
     border: solid 1px grey;
     width: 85%;
@@ -41,4 +44,22 @@
 
 .action a{
     margin: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+input{
+    border: none;
+    font-size: 1em;
+    text-align: left;
+}
+
+button {
+    border: none;
+    font-size: 1em;
+    text-align: left;
+    text-decoration: none;
+    color: black;
+    background-color: transparent;
+    cursor: pointer;
 }
