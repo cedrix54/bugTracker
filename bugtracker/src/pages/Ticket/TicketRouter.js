@@ -1,13 +1,15 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Ticket from './Ticket';
 
-import Ticket from './../../components/Ticket/Ticket'
+import Home from './Home'
 
 const TicketRouter = () => {
     return (
         <div>
             <Routes>
-                <Route path="*" element={<Ticket />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/:tid" element={<Ticket />} />
             </Routes>
         </div>
     );

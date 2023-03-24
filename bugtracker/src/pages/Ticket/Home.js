@@ -1,8 +1,9 @@
 import React, {useEffect, useState, useRef} from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { ticketService } from './../../_services/ticket.service'
 
-const Ticket = () => {
+const Home = () => {
     const [tickets, setTickets] = useState([])
     const flag = useRef(false)
 
@@ -40,7 +41,7 @@ const Ticket = () => {
                     {
                         tickets.map(ticket => (
                             <tr key={ticket.id}>
-                                <td>#{ticket.id}</td>
+                                <td><Link to={`/tickets/${ticket.id}`}>#{ticket.id}</Link></td>
                                 <td>{ticket.project}</td>
                                 <td>{ticket.Severity.severity}</td>
                                 <td>{ticket.summary}</td>
@@ -60,4 +61,4 @@ const Ticket = () => {
     );
 };
 
-export default Ticket;
+export default Home;

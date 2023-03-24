@@ -18,7 +18,7 @@ exports.getTicket = async (req, res) => {
     }
 
     try{
-        let ticket = await Ticket.findOne({ where: {id: ticketId}})
+        let ticket = await Ticket.findOne({ where: {id: ticketId}, include: [{model: DB.Status, attributes:['id', 'status']}, {model: DB.Severity, attributes:['id', 'severity']}]})
         if (ticket === null){
             return res.status(404).json({message: 'Ticket does not exist'})
         }

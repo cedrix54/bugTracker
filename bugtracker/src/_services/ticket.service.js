@@ -7,7 +7,11 @@ const Axios = axios.create({
 let getAllTickets = () => {
     return Axios.get('/tickets')
 }
+
+let getTicket = (tid) => {
+    return Axios.get('/tickets/'+tid)
+}
 export const ticketService =  {
-    getAllTickets,
+    getAllTickets, getTicket
 
 }
