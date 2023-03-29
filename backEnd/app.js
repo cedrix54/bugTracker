@@ -11,7 +11,6 @@ const ticket_router = require('./routes/ticket')
 const status_router = require('./routes/statuses')
 const severity_router = require('./routes/severities')
 
-
 app.use('/tickets', ticket_router)
 app.use('/statuses', status_router)
 app.use('/severities', severity_router)

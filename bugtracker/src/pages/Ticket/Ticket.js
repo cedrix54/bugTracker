@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment';
 import { ticketService } from '../../_services/ticket.service'
 import './ticket.css'
@@ -8,6 +8,7 @@ const Ticket = () => {
     const [ticket, setTicket] = useState([])
     const flag = useRef(false)
     let {tid} = useParams()
+    let navigate = useNavigate()
 
     useEffect(() => {
         if(flag.current === false){
@@ -20,6 +21,12 @@ const Ticket = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const deleteTicket = (ticketId) => {
+        ticketService.deleteTicket(ticketId)
+            .then(res => navigate('./../')
+            .catch(err => console.log(err))
+        )
+    }
     return (
         <div className='ticket'>
             <p>Issue Détails : </p>
@@ -38,7 +45,9 @@ const Ticket = () => {
             </div>
             <div className='action'>
                 <Link to={`./../edit/${ticket.id}`}>Edit</Link> 
-                <Link to={`./../edit/${ticket.id}`}>Delete</Link>
+                <span className='btn' onClick={() => deleteTicket(ticket.id)}>Delete</span>
+                
+                <Link to={`./../`}>Back</Link>
             </div>
         </div>
     );

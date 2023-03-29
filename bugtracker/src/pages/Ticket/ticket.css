@@ -53,6 +53,13 @@ input{
     font-size: 1em;
     text-align: left;
 }
+.detail input{
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #EEE;
+    border-radius: 5px;
+}
 
 button {
     border: none;
@@ -62,4 +69,19 @@ button {
     color: black;
     background-color: transparent;
     cursor: pointer;
+}
+
+.btn{
+    border: none;
+    font-size: 1em;
+    text-align: left;
+    text-decoration: none;
+    color: black;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+span.textArea .issueValue {
+    height: 200px;
+    vertical-align: baseline;
 }

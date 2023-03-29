@@ -55,7 +55,7 @@ const Home = () => {
                     }
                 </tbody>
             </table>
-
+            <Link className='btn' to={`./create/`}>New ticket</Link> 
 
         </div>
     );
