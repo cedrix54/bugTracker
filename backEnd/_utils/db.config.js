@@ -15,8 +15,8 @@ db.sequelize = sequelize
 db.Ticket = require ('./../models/tickets')(sequelize)
 db.Severity = require ('./../models/severity')(sequelize)
 db.Status = require ('./../models/status')(sequelize)
-
-
+db.Project = require ('./../models/project')(sequelize)
+db.User = require ('../models/user')(sequelize)
 db.Severity.hasMany(db.Ticket, {foreignKey: 'id'})
 db.Ticket.belongsTo(db.Severity, {foreignKey: 'severity'})
 
